@@ -1,18 +1,36 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useRouter } from 'expo-router';
+import Icon from "react-native-vector-icons/FontAwesome"; // Pastikan modul ini diinstal
 
 export default function Profile() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
-      {/* Menggunakan require untuk gambar lokal */}
+      {/* Gambar logo */}
+      <Text style={styles.title}>TOP NEWS</Text>      
       <Image source={require("../assets/splash.png")} style={styles.logo} />
-      <Text style={styles.title}>Top News</Text>
       <Text style={styles.description}>
-        Selamat datang di Top News, platform yang menyediakan berita terkini dan
-        terpercaya dari berbagai sumber. Kami berkomitmen untuk memberikan
-        informasi yang akurat dan relevan untuk Anda.
+        Selamat datang di Top News, kami menyediakan berita terkini dari sumber terpercaya untuk anda. Berika yang faktual dan aktual tersedia dan siap dibaca
       </Text>
-      <Text style={styles.contact}>Hubungi kami: contact@topnews.com</Text>
+      <Text style={styles.contact}>Hubungi Kami: halohalohalo05@topnews.com</Text>
+
+      {/* Bottom Bar */}
+      <View style={styles.bottomBar}> 
+        <TouchableOpacity
+          style={styles.iconContainer}
+          onPress={() => router.push('./Home')} // Ganti sesuai router
+        >
+          <Icon name="home" size={30} color="#007BFF" />
+          <Text style={styles.iconText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconContainer} // Ganti sesuai router
+        >
+          <Icon name="user" size={30} color="#007BFF" />
+          <Text style={styles.iconText}>Profile</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -24,6 +42,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
+    paddingBottom: 80, // Tambahkan ruang untuk bottom bar
   },
   logo: {
     width: 150,
@@ -48,5 +67,27 @@ const styles = StyleSheet.create({
     color: "#888",
     marginTop: 20,
     textAlign: "center",
+  },
+  bottomBar: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#f8f9fa",
+    borderTopWidth: 1,
+    borderTopColor: "#ddd",
+  },
+  iconContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconText: {
+    fontSize: 12,
+    color: "#007BFF",
+    marginTop: 4,
   },
 });

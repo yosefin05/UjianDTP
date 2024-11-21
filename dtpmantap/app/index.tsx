@@ -3,23 +3,18 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useRouter } from 'expo-router';
 import Home from './Home';
-import {Link} from "expo-router"; 
 
-// Mencegah Splash Screen otomatis menghilang
 SplashScreen.preventAutoHideAsync();
 
 export default function Index() {
   const router = useRouter();
-
+//mengatur waktu muncul splash screen
   useEffect(() => {
     const loadApp = async () => {
-      // Menampilkan splash screen selama 4 detik
       await new Promise(resolve => setTimeout(resolve, 4000));
 
-      // Setelah 5 detik, sembunyikan Splash Screen
       await SplashScreen.hideAsync();
 
-      // Navigasi ke tab pertama setelah Splash Screen selesai
       console.log("Navigating to Home Screen...");
       router.push('/Home');
           };
@@ -42,12 +37,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 170,
+    height: 170,
     marginBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
